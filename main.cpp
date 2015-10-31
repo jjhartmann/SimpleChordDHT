@@ -80,24 +80,6 @@ public:
 
         successor = mSuccessors.rbegin()->second;
         return false;
-
-
-//
-//        map<int, int>::iterator it = mSuccessors.lower_bound(key);
-//        if (it != mSuccessors.begin())
-//        {
-//            --it;
-//        }
-//
-//        if (it == mSuccessors.end())
-//        {
-//            successor = mSuccessors.rbegin()->second;
-//        }
-//        else
-//        {
-//            successor = it->second;
-//        }
-
     }
 
     // Return the Node ID
@@ -127,6 +109,7 @@ private:
 };
 
 
+/////////////////////////////////////////////////////////////////////////////////////////
 int main(int argn, char *argv[]) {
 
     int S, N, M;
