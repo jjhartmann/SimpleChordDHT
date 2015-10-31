@@ -1,19 +1,21 @@
-Chord DHT Implementation
-CMPT 371 - Jeremy J Hartmann
+#Simple Chord DHT Implementation
 
-Operating System: Windows 10
-Language: C++
-Compiler: GCC v. 4.8.1
+- Operating System Used: Windows 10
+- Language: C++
+- Compiler: GCC v. 4.8.1
 
-COMMAND LINE INSTRUCTIONS:
+###COMMAND LINE INSTRUCTIONS:
 To compile the program run:
-	g++ -std=c++11 main.cpp -o chorddht
 
-NOTE: It is important that you use flag -std=c++11 
-as the program uses multiple c++11 features. 
+```
+	g++ -std=c++11 main.cpp -o chorddht
+```
+
+*NOTE: It is important that you use flag -std=c++11 
+as the program uses multiple c++11 features.*
 
 To run the program:
-	./chorddht.exe <sometestfile.txt>
+	`./chorddht.exe <sometestfile.txt>`
     
-<sometestfile.txt> is the input test file
+`<sometestfile.txt>` is the input test file
 	i.e. test4.txt, etc..
