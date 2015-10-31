@@ -23,16 +23,20 @@ typedef vector<ChordPair> ChordVector;
 class Network
 {
 public:
+    // Constructor
+    // Simulates a network in which the DHT resides
     Network(int S) :
             mS(S)
             {}
 
+    // Add node (peer) to the netork
     void AddNode(int nID)
     {
         mNodes.insert(nID);
     }
 
-    // Return Successor
+    // Checks the peer to peer connection in the network
+    // insures that it is valid.
     int Check(int succ)
     {
         set<int>::iterator it = mNodes.lower_bound(succ);
@@ -52,7 +56,8 @@ private:
 class Node
 {
 public:
-    // Constuctor
+    // Constructor
+    // Creates a node that simulates a peer in a DHT netowrk.
     Node(int nodeId, int S) :
             mNodeId(nodeId),
             mS(S),
@@ -60,6 +65,9 @@ public:
     { };
 
     // Process Query
+    // Takes a input "key" and returns true if the node (peer) has the
+    // Hash key in question or false otherwise.
+    // Returns the next successor if false.
     bool ProcessQuery(int key, int &successor)
     {
         if (mKey == key)
@@ -82,19 +90,24 @@ public:
         return false;
     }
 
-    // Return the Node ID
+    // GetID
+    // Returns the node (peer) id.
     int GetId()
     {
         return mNodeId;
     }
 
-    // Add the key
+    // AddKey
+    // inserts a key value pair into the node.
+    // In this case the value is not present.
     void AddKey(int key)
     {
         mKey = key;
     }
 
-    // Insert KeyValue Pair
+    // InsertSuccessor
+    // Creates a map of <finger id, successor>
+    // Simulates the connection between the peers in the DHT
     void InsertSuccessor(int nodeid, int succ)
     {
         mSuccessors.insert(pair<int, int>(nodeid, succ));
@@ -111,8 +124,12 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 int main(int argn, char *argv[]) {
-
+    // Intial Values
+    // S = the max number of nodes in the network 2^n - 1 = S
+    // N = the number of current nodes in the network
+    // M = the number of key-value pairs to insert in the network
     int S, N, M;
+
     // Check for argument
     if (argn < 2)
     {
@@ -131,9 +148,6 @@ int main(int argn, char *argv[]) {
     N = atoi(line.c_str());
     getline(inputFile, line);
     M = atoi(line.c_str());
-
-    // Create node buffer.
-    ChordVector CircularDHT(S, ChordPair(false, -1));
 
     // Populate Buffer
     getline(inputFile, line);
@@ -166,7 +180,6 @@ int main(int argn, char *argv[]) {
         }
     }
 
-
     // Insert the Key Value
     getline(inputFile, line);
     oldpos = 0;
@@ -195,7 +208,6 @@ int main(int argn, char *argv[]) {
         {
             ++steps;
         }
-
 
         PRINT("THE NUMBER OF STEPS FOR QUERY: " << steps)
         string stepnumber = static_cast<ostringstream*>( &(ostringstream() << steps) )->str();
